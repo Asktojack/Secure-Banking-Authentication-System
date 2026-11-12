@@ -1,0 +1,95 @@
+
+{% extends "base.html" %}
+
+{% block title %}Deposit Money - Secure Bank{% endblock %}
+
+{% block content %}
+
+<div class="deposit-page">
+
+    <div class="deposit-header">
+        <div class="deposit-header-icon">
+            <i class="bi bi-wallet2"></i>
+        </div>
+        <div>
+            <h1>Deposit Money</h1>
+            <p>Add funds to your Secure Bank account.</p>
+        </div>
+    </div>
+
+    <div class="deposit-layout">
+
+        <div class="deposit-card">
+
+            <div class="deposit-card-heading">
+                <h2>Deposit Details</h2>
+                <p>Enter the amount you want to deposit.</p>
+            </div>
+
+            <form method="POST"
+                  action="{{ url_for('auth.deposit') }}"
+                  class="deposit-form">
+
+                <div class="deposit-field">
+                    <label for="amount">Deposit Amount (₹)</label>
+
+                    <div class="deposit-amount-input">
+                        <span>₹</span>
+                        <input type="number"
+                               id="amount"
+                               name="amount"
+                               class="form-control"
+                               placeholder="Enter amount"
+                               min="0.01"
+                               step="0.01"
+                               required>
+                    </div>
+
+                    <small>Enter a valid amount greater than zero.</small>
+                </div>
+
+                <button type="submit" class="deposit-submit">
+                    <i class="bi bi-plus-circle me-2"></i>
+                    Deposit Money
+                </button>
+
+                <p class="deposit-note">
+                    <i class="bi bi-shield-lock-fill me-1"></i>
+                    Please verify the amount before submitting.
+                </p>
+
+            </form>
+        </div>
+
+        <div class="deposit-info-card">
+            <div class="deposit-info-icon">
+                <i class="bi bi-shield-check"></i>
+            </div>
+
+            <h3>Secure Deposits</h3>
+
+            <p>
+                Use this page to submit a deposit request through
+                your banking application.
+            </p>
+
+            <div class="deposit-info-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>Enter the correct deposit amount</span>
+            </div>
+
+            <div class="deposit-info-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>Review the details before submitting</span>
+            </div>
+
+            <div class="deposit-info-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>Check your balance after processing</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Deposit Successful</title>
+</head>
+
+<body>
+
+<h2 style="color:green;">✔ Deposit Successful</h2>
+
+<h3>Amount Deposited: ₹{{ amount }}</h3>
+
+<h3>Current Balance: ₹{{ balance }}</h3>
+
+<br>
+
+<a href="{{ url_for('auth.dashboard') }}">
+    Back to Dashboard
+</a>
+
+</body>
+</html>

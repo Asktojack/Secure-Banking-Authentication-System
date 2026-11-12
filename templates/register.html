@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Secure Bank - Registration</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/register.css') }}">
+</head>
+
+<body>
+    <div class="register-container">
+
+        <div class="security-icon">🔐</div>
+
+        <h1>Create Secure Bank Account</h1>
+        <p class="subtitle">Register to access secure banking services</p>
+
+        <form method="POST" action="{{ url_for('auth.register') }}">
+
+            <label for="full_name">Full Name</label>
+            <input type="text" id="full_name" name="full_name"
+                   placeholder="Enter your full name" required>
+
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username"
+                   placeholder="Choose a username" required>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email"
+                   placeholder="Enter your email address" required>
+
+            <label for="mobile">Mobile Number</label>
+            <input type="text" id="mobile" name="mobile"
+                   placeholder="Enter your mobile number"
+                   autocomplete="tel" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password"
+                   placeholder="Create a password"
+                   autocomplete="new-password" required>
+
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" id="confirm_password"
+                   name="confirm_password"
+                   placeholder="Re-enter your password"
+                   autocomplete="new-password" required>
+
+            <div class="section-heading">
+                <h2>Set Your Authentication Pattern</h2>
+                <p>Choose the order for verifying your identity during login.</p>
+            </div>
+
+            <div class="auth-step">
+                <span class="step-number">1</span>
+                <label for="auth_step1">Authentication Step 1</label>
+                <select id="auth_step1" name="auth_step1" required>
+                    <option value="">Select Step 1</option>
+                    <option value="Email">Email OTP</option>
+                    <option value="SMS">SMS OTP</option>
+                    <option value="Authenticator">Authenticator</option>
+                </select>
+            </div>
+
+            <div class="auth-step">
+                <span class="step-number">2</span>
+                <label for="auth_step2">Authentication Step 2</label>
+                <select id="auth_step2" name="auth_step2" required>
+                    <option value="">Select Step 2</option>
+                    <option value="Email">Email OTP</option>
+                    <option value="SMS">SMS OTP</option>
+                    <option value="Authenticator">Authenticator</option>
+                </select>
+            </div>
+
+            <div class="auth-step">
+                <span class="step-number">3</span>
+                <label for="auth_step3">Authentication Step 3</label>
+                <select id="auth_step3" name="auth_step3" required>
+                    <option value="">Select Step 3</option>
+                    <option value="Email">Email OTP</option>
+                    <option value="SMS">SMS OTP</option>
+                    <option value="Authenticator">Authenticator</option>
+                </select>
+            </div>
+
+            <button type="submit">Create Secure Account</button>
+
+        </form>
+
+        <p class="security-note">
+            Your account is protected by multi-factor authentication.
+        </p>
+
+        <a class="login-link" href="{{ url_for('auth.login') }}">
+            Already registered? Login
+        </a>
+
+        <a class="home-link" href="{{ url_for('home') }}">
+            Back to Home
+        </a>
+
+    </div>
+
+    <script>
+        const authSelects = [
+            document.getElementById("auth_step1"),
+            document.getElementById("auth_step2"),
+            document.getElementById("auth_step3")
+        ];
+
+        function updateAuthOptions() {
+            const selectedValues = authSelects.map(select => select.value);
+
+            authSelects.forEach((select, index) => {
+                Array.from(select.options).forEach(option => {
+                    if (!option.value) return;
+
+                    option.disabled = selectedValues.some(
+                        (value, otherIndex) =>
+                            otherIndex !== index &&
+                            value === option.value
+                    );
+                });
+            });
+        }
+
+        authSelects.forEach(select =>
+            select.addEventListener("change", updateAuthOptions)
+        );
+    </script>
+</body>
+</html>

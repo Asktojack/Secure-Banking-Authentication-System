@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}
+Balance Enquiry
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow p-4">
+
+        <h2 class="text-center mb-4">
+            Balance Enquiry
+        </h2>
+
+        <div class="text-center">
+
+            <h4>Current Balance</h4>
+
+            <h1 class="text-success">
+                ₹ {{ user.balance }}
+            </h1>
+
+        </div>
+
+        <hr>
+
+        <div class="row text-center">
+
+            <div class="col-md-4">
+                <h5>Total Deposits</h5>
+                <h4 class="text-primary">
+                    ₹ {{ total_deposit }}
+                </h4>
+            </div>
+
+            <div class="col-md-4">
+                <h5>Total Withdrawals</h5>
+                <h4 class="text-danger">
+                    ₹ {{ total_withdraw }}
+                </h4>
+            </div>
+
+            <div class="col-md-4">
+                <h5>Total Transfers</h5>
+                <h4 class="text-warning">
+                    ₹ {{ total_transfer }}
+                </h4>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

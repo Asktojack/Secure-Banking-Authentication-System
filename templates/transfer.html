@@ -1,0 +1,129 @@
+
+{% extends "base.html" %}
+
+{% block title %}Transfer Money - Secure Bank{% endblock %}
+
+{% block content %}
+
+<div class="transfer-page">
+
+    <div class="transfer-header">
+        <div class="transfer-header-icon">
+            <i class="bi bi-arrow-left-right"></i>
+        </div>
+        <div>
+            <h1>Transfer Money</h1>
+            <p>Send money securely to your registered beneficiary.</p>
+        </div>
+    </div>
+
+    <div class="transfer-layout">
+
+        <div class="transfer-card">
+
+            <div class="transfer-card-heading">
+                <i class="bi bi-send"></i>
+                <div>
+                    <h2>Payment Details</h2>
+                    <p>Enter the recipient and transfer amount.</p>
+                </div>
+            </div>
+
+            <form method="POST"
+                  action="{{ url_for('auth.transfer') }}"
+                  class="transfer-form">
+
+                <div class="transfer-field">
+                    <label for="beneficiary">
+                        Select Beneficiary
+                    </label>
+                    <select id="beneficiary"
+                            name="beneficiary_id"
+                            class="form-select">
+                        <option value="">-- Select Beneficiary --</option>
+                        {% for beneficiary in beneficiaries %}
+                        <option value="{{ beneficiary.id }}">
+                            {{ beneficiary.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="transfer-field">
+                    <label for="receiver_name">Receiver Name</label>
+                    <input type="text"
+                           id="receiver_name"
+                           name="receiver_name"
+                           class="form-control"
+                           placeholder="Enter receiver's full name"
+                           required>
+                </div>
+
+                <div class="transfer-field">
+                    <label for="account_number">Account Number</label>
+                    <input type="text"
+                           id="account_number"
+                           name="account_number"
+                           class="form-control"
+                           placeholder="Enter recipient account number"
+                           required>
+                </div>
+
+                <div class="transfer-field">
+                    <label for="amount">Transfer Amount (₹)</label>
+                    <div class="amount-input">
+                        <span>₹</span>
+                        <input type="number"
+                               id="amount"
+                               name="amount"
+                               class="form-control"
+                               placeholder="0.00"
+                               min="0.01"
+                               step="0.01"
+                               required>
+                    </div>
+                </div>
+
+                <button type="submit" class="transfer-submit">
+                    <i class="bi bi-shield-check me-2"></i>
+                    Transfer Securely
+                </button>
+
+                <p class="transfer-security-note">
+                    <i class="bi bi-lock-fill me-1"></i>
+                    Always verify the recipient details before transferring.
+                </p>
+
+            </form>
+        </div>
+
+        <div class="transfer-info-card">
+            <div class="transfer-info-icon">
+                <i class="bi bi-shield-lock"></i>
+            </div>
+            <h3>Secure Transactions</h3>
+            <p>
+                Your banking system uses authentication and transaction
+                checks to help protect your account.
+            </p>
+
+            <div class="transfer-info-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>Verify recipient information</span>
+            </div>
+
+            <div class="transfer-info-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>Review the amount before submitting</span>
+            </div>
+
+            <div class="transfer-info-item">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>Keep your OTP and password private</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+CREATE DATABASE IF NOT EXISTS secure_bank;
+
+USE secure_bank;
+
+CREATE TABLE users(
+
+id INT AUTO_INCREMENT PRIMARY KEY,
+
+full_name VARCHAR(100),
+
+username VARCHAR(50) UNIQUE,
+
+email VARCHAR(100),
+
+mobile VARCHAR(15),
+
+password VARCHAR(255),
+
+device_id VARCHAR(255),
+
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+);

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Deposit History</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background:#f4f4f4;
+            padding:30px;
+        }
+
+        h2{
+            text-align:center;
+        }
+
+        table{
+            width:90%;
+            margin:auto;
+            border-collapse:collapse;
+            background:white;
+        }
+
+        th{
+            background:#007bff;
+            color:white;
+            padding:12px;
+        }
+
+        td{
+            padding:12px;
+            text-align:center;
+            border-bottom:1px solid #ddd;
+        }
+
+        tr:hover{
+            background:#f2f2f2;
+        }
+
+        .btn{
+            display:block;
+            width:200px;
+            margin:20px auto;
+            padding:10px;
+            text-align:center;
+            background:#28a745;
+            color:white;
+            text-decoration:none;
+            border-radius:5px;
+        }
+
+        .btn:hover{
+            background:#218838;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h2>Deposit History</h2>
+
+{% if deposits %}
+
+<table>
+
+    <tr>
+
+        <th>Deposit ID</th>
+        <th>Amount (₹)</th>
+        <th>Status</th>
+        <th>Date & Time</th>
+
+    </tr>
+
+    {% for d in deposits %}
+
+    <tr>
+
+        <td>{{ d.id }}</td>
+        <td>₹ {{ d.amount }}</td>
+        <td>{{ d.status }}</td>
+        <td>{{ d.deposit_time }}</td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% else %}
+
+<h3 style="text-align:center;color:red;">
+    No Deposit History Available
+</h3>
+
+{% endif %}
+
+<a href="{{ url_for('auth.dashboard') }}" class="btn">
+    Back to Dashboard
+</a>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Beneficiaries</title>
+</head>
+
+<body>
+
+<h2>Saved Beneficiaries</h2>
+
+<table border="1" cellpadding="10">
+
+<tr>
+    <th>Name</th>
+    <th>Account Number</th>
+    <th>Bank</th>
+    <th>IFSC</th>
+</tr>
+
+{% for b in beneficiaries %}
+
+<tr>
+
+<td>{{ b.beneficiary_name }}</td>
+
+<td>{{ b.account_number }}</td>
+
+<td>{{ b.bank_name }}</td>
+
+<td>{{ b.ifsc_code }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br><br>
+
+<a href="{{ url_for('auth.add_beneficiary') }}">
+    <button>Add Another Beneficiary</button>
+</a>
+
+</body>
+
+</html>

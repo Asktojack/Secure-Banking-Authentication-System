@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Banking | Authentication Pattern</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/auth_pattern.css') }}">
+</head>
+<body>
+    <div class="auth-container">
+
+        <div class="security-icon">🔐</div>
+
+        <h1>Authentication Pattern</h1>
+
+        <p class="subtitle">
+            Verify your identity using your registered authentication order.
+        </p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% for category, message in messages %}
+            <div class="message">{{ message }}</div>
+          {% endfor %}
+        {% endwith %}
+
+        <form method="POST">
+            <div class="step">
+                <span class="step-number">1</span>
+                <label for="step1">Authentication Step 1</label>
+                <select id="step1" name="step1" required>
+                    <option value="">Select Step 1</option>
+                    <option value="Email">Email</option>
+                    <option value="SMS">SMS</option>
+                    <option value="Authenticator">Authenticator App</option>
+                </select>
+            </div>
+
+            <div class="step">
+                <span class="step-number">2</span>
+                <label for="step2">Authentication Step 2</label>
+                <select id="step2" name="step2" required>
+                    <option value="">Select Step 2</option>
+                    <option value="Email">Email</option>
+                    <option value="SMS">SMS</option>
+                    <option value="Authenticator">Authenticator App</option>
+                </select>
+            </div>
+
+            <div class="step">
+                <span class="step-number">3</span>
+                <label for="step3">Authentication Step 3</label>
+                <select id="step3" name="step3" required>
+                    <option value="">Select Step 3</option>
+                    <option value="Email">Email</option>
+                    <option value="SMS">SMS</option>
+                    <option value="Authenticator">Authenticator App</option>
+                </select>
+            </div>
+
+            <button type="submit">Continue Securely →</button>
+        </form>
+
+        <p class="security-note">
+            Your account security is protected by multi-factor authentication.
+        </p>
+
+        <a class="back-link" href="{{ url_for('home') }}">
+            ← Back to Home
+        </a>
+    </div>
+
+    <script>
+        const selects = [
+            document.getElementById("step1"),
+            document.getElementById("step2"),
+            document.getElementById("step3")
+        ];
+
+        function updateOptions() {
+            const selected = selects.map(select => select.value);
+
+            selects.forEach((select, index) => {
+                Array.from(select.options).forEach(option => {
+                    if (!option.value) return;
+
+                    const usedElsewhere = selected.some(
+                        (value, otherIndex) =>
+                            otherIndex !== index && value === option.value
+                    );
+
+                    option.disabled = usedElsewhere;
+                });
+            });
+        }
+
+        selects.forEach(select =>
+            select.addEventListener("change", updateOptions)
+        );
+    </script>
+</body>
+</html>

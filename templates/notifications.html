@@ -1,0 +1,76 @@
+```html
+{% extends "base.html" %}
+
+{% block title %}Notifications | Secure Bank{% endblock %}
+
+{% block content %}
+
+<div class="notifications-page">
+
+    <div class="notifications-header">
+        <div>
+            <h2>
+                <i class="bi bi-bell-fill"></i>
+                Your Notifications
+            </h2>
+            <p>Stay updated on your account activity and transactions.</p>
+        </div>
+
+        <a href="{{ url_for('auth.dashboard') }}" class="notification-back">
+            <i class="bi bi-arrow-left"></i> Back to Dashboard
+        </a>
+    </div>
+
+    <div class="notification-card">
+
+        <div class="notification-card-header">
+            <h5><i class="bi bi-inbox"></i> Recent Activity</h5>
+            <span class="notification-count">
+                {{ notifications|length }} Notifications
+            </span>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table notification-table align-middle">
+                <thead>
+                    <tr>
+                        <th>Message</th>
+                        <th>Date &amp; Time</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for notification in notifications %}
+                    <tr>
+                        <td>
+                            <div class="notification-message">
+                                <span class="notification-icon">
+                                    <i class="bi bi-shield-check"></i>
+                                </span>
+                                <span>{{ notification.message }}</span>
+                            </div>
+                        </td>
+
+                        <td class="notification-date">
+                            {{ notification.created_at }}
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="2" class="notification-empty">
+                            <i class="bi bi-bell-slash"></i>
+                            <h5>No notifications yet</h5>
+                            <p>Your account updates will appear here.</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+```

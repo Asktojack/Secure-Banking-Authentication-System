@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>High Risk Transaction</title>
+</head>
+
+<body>
+
+<h2>⚠ High Risk Transaction Detected</h2>
+
+<p>
+This transaction requires additional verification.
+</p>
+
+<p>
+Risk Score : {{ risk }}
+</p>
+
+<form action="{{ url_for('auth.high_email_otp') }}">
+    <button type="submit">
+        Continue Verification
+    </button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Login History</title>
+
+    <style>
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        th,td{
+            border:1px solid black;
+            padding:10px;
+            text-align:center;
+        }
+
+        th{
+            background:#2d89ef;
+            color:white;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h2>Login History</h2>
+
+<table>
+
+<tr>
+    <th>Date & Time</th>
+    <th>IP Address</th>
+    <th>Device</th>
+    <th>Browser</th>
+    <th>Status</th>
+</tr>
+
+{% for row in history %}
+
+<tr>
+
+<td>{{ row.login_time }}</td>
+
+<td>{{ row.ip_address }}</td>
+
+<td>{{ row.device }}</td>
+
+<td>{{ row.browser }}</td>
+
+<td>{{ row.status }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="{{ url_for('auth.dashboard') }}">
+    Back to Dashboard
+</a>
+
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+Secure Bank - Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-page">
+
+    <!-- Welcome Section -->
+    <div class="dashboard-welcome">
+        <div>
+            <h1>Welcome, {{ session.username }}!</h1>
+            <p>Welcome to your Secure Banking System.</p>
+        </div>
+        <div class="welcome-icon">🏦</div>
+    </div>
+
+    <!-- Balance Section -->
+    <div class="balance-card">
+        <div class="balance-label">Current Balance</div>
+        <div class="balance-amount">
+            ₹ {{ user.balance }}
+        </div>
+        <div class="balance-caption">
+            Your account balance
+        </div>
+    </div>
+
+    <!-- Banking Services -->
+    <h2 class="section-title">Banking Services</h2>
+
+    <div class="services-grid">
+
+        <div class="service-card">
+            <div class="service-icon">💸</div>
+            <h3>Withdraw Money</h3>
+            <p>Withdraw money from your account.</p>
+            <a href="{{ url_for('auth.withdraw') }}"
+               class="service-btn withdraw-btn">
+                Withdraw
+            </a>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">💳</div>
+            <h3>Account Balance</h3>
+            <p>Check your available account balance.</p>
+            <a href="{{ url_for('auth.dashboard') }}"
+               class="service-btn">
+                View Balance
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

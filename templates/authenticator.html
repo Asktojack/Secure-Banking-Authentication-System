@@ -1,0 +1,32 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authenticator Verification</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/otp.css') }}">
+</head>
+<body>
+    <div class="otp-container">
+        <div class="security-icon">🔐</div>
+
+        <h1>Authenticator Verification</h1>
+        <p class="subtitle">
+            Open your authenticator app and enter the current verification code.
+        </p>
+
+        <form method="POST">
+            <label for="otp">Authenticator code</label>
+            <input type="text" id="otp" name="code"
+                   placeholder="Enter verification code"
+                   inputmode="numeric" pattern="[0-9]{6}"
+                   maxlength="6" autocomplete="one-time-code" required>
+
+            <button type="submit">Verify Authenticator</button>
+        </form>
+
+        <p class="security-note">
+            Codes expire regularly. Use the current code from your app.
+        </p>
+    </div>
+</body>

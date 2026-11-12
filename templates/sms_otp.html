@@ -1,0 +1,32 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS OTP Verification</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/otp.css') }}">
+</head>
+<body>
+    <div class="otp-container">
+        <div class="security-icon">📱</div>
+
+        <h1>SMS OTP Verification</h1>
+        <p class="subtitle">
+            Enter the verification code sent to your registered mobile.
+        </p>
+
+        <form method="POST">
+            <label for="otp">6-digit verification code</label>
+            <input type="text" id="otp" name="otp"
+                   placeholder="Enter 6-digit OTP"
+                   inputmode="numeric" pattern="[0-9]{6}"
+                   maxlength="6" autocomplete="one-time-code" required>
+
+            <button type="submit">Verify SMS OTP</button>
+        </form>
+
+        <p class="security-note">
+            Keep your verification code confidential.
+        </p>
+    </div>
+</body>
